@@ -27,23 +27,23 @@ This template instead defines **one item** that captures the entire `upsc` outpu
 
 ```
 ┌─────────────────────────────────────────────┐
-│ Zabbix Agent2 UserParameter                  │
-│ upsmon.json[*] → ups_status_json.sh $1       │
-│   runs `upsc <ups>` ONCE, outputs JSON        │
-└───────────────────┬───────────────────────────┘
+│ Zabbix Agent2 UserParameter                 │
+│ upsmon.json[*] → ups_status_json.sh $1      │
+│ runs `upsc <ups>` ONCE, outputs JSON        │
+──────────────────┬───────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────┐
-│ Master item (Zabbix agent, Text)             │
-│ UPS {#UPSNAME} Raw Data                      │
-│ key: upsmon.json[{#UPSNAME}]                 │
-└───────────────────┬───────────────────────────┘
-                     │  (dependent items, same timestamp)
-        ┌────────────┼────────────┬─────────────┬── ...
-        ▼            ▼            ▼             ▼
-   Input Voltage  Output Voltage  Charge   Power Factor
-   (JSONPath +    (JSONPath +   (JSONPath   (JavaScript:
-    round to 1dp)  round to 1dp)  + round)   direct field or
+│ Master item (Zabbix agent, Text)            │
+│ UPS {#UPSNAME} Raw Data                     │
+│ key: upsmon.json[{#UPSNAME}]                │
+└───────────────────┬─────────────────────────┘
+                    │  (dependent items, same timestamp)
+      ┌─────────────┼────────────┬─────────────┬── ...
+      ▼             ▼            ▼             ▼
+  Input Voltage  Output Voltage  Charge      Power Factor
+  (JSONPath +    (JSONPath +     (JSONPath   (JavaScript:
+  round to 1dp)  round to 1dp)   + round)    direct field or
                                              computed fallback)
 ```
 
