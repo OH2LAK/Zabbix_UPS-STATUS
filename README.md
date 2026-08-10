@@ -30,7 +30,7 @@ This template instead defines **one item** that captures the entire `upsc` outpu
 │ Zabbix Agent2 UserParameter                 │
 │ upsmon.json[*] → ups_status_json.sh $1      │
 │ runs `upsc <ups>` ONCE, outputs JSON        │
-──────────────────┬───────────────────────────┘
+└────────────────────┬────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────┐
